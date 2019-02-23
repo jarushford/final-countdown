@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Form v-bind="{ getSynonyms }" />
+    <h1 class="current-word" ref="current"></h1>
     <h2 class="not-found-msg" ref="notFound">Did you mean:</h2>
     <h2 class="not-found-msg" ref="error">Error processing your request</h2>
     <ul>
@@ -34,6 +35,7 @@
     methods: {
       async getSynonyms(word) {
         this.$data.synonyms = []
+        this.$refs.current.innerText = word
         let url = `https://dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${key}`
         let response = await fetch(url)
         
@@ -70,9 +72,15 @@
     margin-top: 60px;
   }
 
+  .current-word {
+    color: rgb(31, 179, 122);
+    margin-bottom: 10px;
+    font-size: 2.4rem;
+  }
   .not-found-msg {
     opacity: 0;
     height: 0px;
+    margin: 5px
   }
 
   .show {
@@ -83,7 +91,7 @@
 
   ul {
     list-style: none;
-    margin: 50px auto;
+    margin: 30px auto 50px;
     column-count: 2;
     padding-left: 0;
     max-width: 800px;

@@ -22,6 +22,7 @@
         if (word !== '') {
           this.getSynonyms(word)
         }
+        this.$data.word = ''
       }
     }
   }
