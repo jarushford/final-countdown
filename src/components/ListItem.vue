@@ -1,12 +1,17 @@
 <template>
-  <li>{{ syn }}</li>
+  <li @click="handleClick">{{ syn }}</li>
 </template>
 
 
 <script>
   export default {
     name: 'ListItem',
-    props: ['syn'],
+    props: ['syn', 'getSynonyms'],
+    methods: {
+      handleClick(e) {
+        this.getSynonyms(e.target.innerText)
+      }
+    }
   }
 </script>
 

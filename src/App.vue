@@ -2,8 +2,10 @@
   <div id="app">
     <Form v-bind="{ getSynonyms }" />
     <h2 class="not-found-msg" ref="notFound">Did you mean:</h2>
+    <h2 class="not-found-msg" ref="error">Error processing your request</h2>
     <ul>
       <ListItem
+        v-bind="{ getSynonyms }"
         v-for="(syn, index) in synonyms"
         v-bind:key="`syn-${index}`"
         :syn="syn"
@@ -33,8 +35,8 @@
       async getSynonyms(word) {
         this.$data.synonyms = []
         let url = `https://dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${key}`
-
         let response = await fetch(url)
+        
         if (response.ok) {
           let result = await response.json()
           if (typeof result[0] === 'string') {
@@ -42,6 +44,7 @@
             this.$refs.notFound.classList.add('show')
           } else {
             this.$refs.notFound.classList.remove('show')
+            this.$refs.error.classList.remove('show')
             result.forEach(blob => {
               let synArrays = blob.meta.syns
               synArrays.forEach(arr => {
@@ -49,6 +52,8 @@
               })
             })
           }
+        } else {
+          this.$refs.error.classList.add('show')
         }
       }
     }

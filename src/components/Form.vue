@@ -19,7 +19,6 @@
     methods: {
       handleSubmit() {
         let word = this.$data.word
-        this.$data.word = word
         if (word !== '') {
           this.getSynonyms(word)
         }
