@@ -17,9 +17,9 @@
 </template>
 
 <script>
-  import Form from './components/Form.vue'
-  import ListItem from './components/ListItem.vue'
-  import { key } from './utils/apiKey.js'
+  import Form from './Form.vue'
+  import ListItem from './ListItem.vue'
+  import { key } from '../utils/apiKey.js'
 
   export default {
     name: 'app',
