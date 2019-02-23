@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <Form v-bind="{ getSynonyms }" />
-    <h1 class="current-word" ref="current"></h1>
-    <h2 class="not-found-msg" ref="notFound">Did you mean:</h2>
-    <h2 class="not-found-msg" ref="error">Error processing your request</h2>
+    <div class="fixed">
+      <Form v-bind="{ getSynonyms }" />
+      <h1 class="current-word" ref="current"></h1>
+      <h2 class="not-found-msg" ref="notFound">Did you mean:</h2>
+      <h2 class="not-found-msg" ref="error">Error processing your request</h2>
+    </div>
     <ul>
       <ListItem
         v-bind="{ getSynonyms }"
@@ -72,10 +74,19 @@
     margin-top: 60px;
   }
 
+  .fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    padding: 10px 0;
+  }
+
   .current-word {
     color: rgb(31, 179, 122);
     margin-bottom: 10px;
     font-size: 2.4rem;
+    text-align: center;
   }
   .not-found-msg {
     opacity: 0;
@@ -91,7 +102,7 @@
 
   ul {
     list-style: none;
-    margin: 30px auto 50px;
+    margin: 300px auto 50px;
     column-count: 2;
     padding-left: 0;
     max-width: 800px;
@@ -103,6 +114,12 @@
     }
     100% {
       opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    ul {
+      column-count: 1;
     }
   }
 </style>

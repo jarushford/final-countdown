@@ -18,7 +18,7 @@
 
 <style scoped>
   li {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     margin: 20px;
     animation: fade-in .4s ease;
     transition: .3s ease;
