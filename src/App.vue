@@ -1,30 +1,32 @@
 <template>
   <div id="app">
     <Form v-bind="{ getSynonyms }" />
+    <h2 class="not-found-msg" ref="notFound">Did you mean:</h2>
     <ul>
-      <li
+      <ListItem
         v-for="(syn, index) in synonyms"
         v-bind:key="`syn-${index}`"
+        :syn="syn"
       >
-        {{ syn }}
-      </li>
+      </ListItem>
     </ul>
   </div>
 </template>
 
 <script>
   import Form from './components/Form.vue'
+  import ListItem from './components/ListItem.vue'
   import { key } from './utils/apiKey.js'
 
   export default {
     name: 'app',
     components: {
-      Form
+      Form,
+      ListItem
     },
     data() {
       return {
         synonyms: [],
-        
       }
     },
     methods: {
@@ -37,7 +39,9 @@
           let result = await response.json()
           if (typeof result[0] === 'string') {
             this.$data.synonyms = result
+            this.$refs.notFound.classList.add('show')
           } else {
+            this.$refs.notFound.classList.remove('show')
             result.forEach(blob => {
               let synArrays = blob.meta.syns
               synArrays.forEach(arr => {
@@ -61,28 +65,23 @@
     margin-top: 60px;
   }
 
+  .not-found-msg {
+    opacity: 0;
+    height: 0px;
+  }
+
+  .show {
+    height: unset;
+    animation: fade-in .4s ease;
+    animation-fill-mode: forwards;
+  }
+
   ul {
     list-style: none;
     margin: 50px auto;
     column-count: 2;
     padding-left: 0;
     max-width: 800px;
-  }
-
-  li {
-    font-size: 1.8rem;
-    margin: 20px;
-    animation: fade-in .4s ease;
-    transition: .3s ease;
-  }
-
-  li:first-child {
-    margin-top: 0;
-  }
-
-  li:hover {
-    cursor: pointer;
-    color: rgb(31, 179, 122);
   }
 
   @keyframes fade-in {
