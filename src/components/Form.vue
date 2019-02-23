@@ -46,6 +46,7 @@
     width: 150px;
     border-radius: 8px;
     margin-left: 10px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-size: 1.4rem;
     cursor: pointer;
     outline: none;
