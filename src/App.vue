@@ -29,6 +29,7 @@
     },
     methods: {
       async getSynonyms(word) {
+        this.$data.synonyms = []
         let url = `https://dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${key}`
 
         let response = await fetch(url)
@@ -58,5 +59,38 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 50px auto;
+    column-count: 2;
+    padding-left: 0;
+    max-width: 800px;
+  }
+
+  li {
+    font-size: 1.8rem;
+    margin: 20px;
+    animation: fade-in .4s ease;
+    transition: .3s ease;
+  }
+
+  li:first-child {
+    margin-top: 0;
+  }
+
+  li:hover {
+    cursor: pointer;
+    color: rgb(31, 179, 122);
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 </style>

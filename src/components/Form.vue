@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <h2>Enter a word below to find it's synonyms!</h2>
+    <h2>Enter a word below to find it's synonyms</h2>
     <input type="text" v-model="word" />
     <button>Go</button>
   </form>
@@ -20,7 +20,9 @@
       handleSubmit() {
         let word = this.$data.word
         this.$data.word = word
-        this.getSynonyms(word)
+        if (word !== '') {
+          this.getSynonyms(word)
+        }
       }
     }
   }
@@ -28,5 +30,29 @@
 
 
 <style scoped>
+  input {
+    width: 250px;
+    height: 35px;
+    margin: 10px;
+    font-size: 1.2rem;
+    padding-left: 7px;
+    outline: none;
+  }
 
+  button {
+    border: none;
+    background: rgb(31, 179, 122);
+    height: 42px;
+    width: 150px;
+    border-radius: 8px;
+    margin-left: 10px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    outline: none;
+    transition: .3s ease;
+  }
+
+  button:hover {
+    opacity: .8;
+  }
 </style>
