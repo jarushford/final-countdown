@@ -2,6 +2,8 @@
 
 This app uses the Merriam-Webster Thesaurus API to provide a synonym search where a user can input a word and get back a list of synonyms, or if none exist, a list of sugested similar words. The user can also click on any synonym to search for synonyms of that word. The app is built using Vue.js.
 
+### Live at [https://jarushford.github.io/final-countdown/](https://jarushford.github.io/final-countdown/)
+
 ### Local Installation
 
 ```
